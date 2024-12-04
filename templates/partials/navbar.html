@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url "index" %}">Proyecto vehículos</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav w-100 justify-content-lg-between">
+            <div class="d-flex flex-column flex-lg-row">
+              <a class="nav-link" href="{% url "index" %}">Home</a>
+              {% if user.is_authenticated and perms.vehiculo.can_add_vehiculomodel %}
+              <a class="nav-link" href="{% url "agregar_vehiculo" %}">Agregar</a>
+              {% endif %}
+              {% if user.is_authenticated and perms.vehiculo.visualizar_catalogo %}
+              <a class="nav-link" href="{% url "listar_vehiculo" %}">Listar</a>
+              {% endif %}
+              <div class="d-flex flex-column flex-lg-row">
+                {% if not user.is_authenticated %}
+                <a class="nav-link" href="{% url "login" %}">Login</a>
+                <a class="nav-link" href="{% url "registro" %}">Registro</a>
+                {% endif %}
+                {% if user.is_authenticated %}
+                <a class="nav-link" href="{% url "perfil" user.id %}">
+                    <span class="fw-bold">{{user.username}}</span>
+                  </a>
+                  <form method="post" action="{% url "logout" %}" class="nav-link">
+                    {% csrf_token %}
+                    <input type="submit" value="logout">
+                  </form>
+                {% endif %}
+            </div>
+        </div>
+      </div>
+    </div>
+  </nav>

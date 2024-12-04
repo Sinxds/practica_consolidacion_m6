@@ -1,0 +1,27 @@
+{% extends "Layouts/base.html" %}
+
+{% block contenido %}
+<header>
+<h1 class="text-center">Agrega un nuevo vehículo</h1>
+</header>
+
+<main>
+    <section>
+        <h3>Formulario para agregar nuevos vehículos</h3>
+
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-6 col-lg-5">
+                <form method="post" id="form_add_producto">
+                    {% csrf_token %}
+                    {{form}}
+                    <div>
+                        <input type="submit" value="Añadir" class="btn btn-primary" id="btn-crear">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+
+
+{% endblock  %}

@@ -1,0 +1,40 @@
+{% extends 'Layouts/base.html' %}
+
+{% block contenido %}
+<header>
+    <h1 class="text-center">Listado de Vehículos</h1>
+</header>
+
+<main class="container">
+    <div class="py-3">
+        <table>
+            <thead>
+                <tr>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>Serial Carroceria</th>
+                    <th>Serial Motor</th>
+                    <th>Categoria</th>
+                    <th>Precio</th>
+                    <th>Condición de Precio</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for vehiculo in vehiculos %}
+                <tr>
+                    <td>{{ vehiculo.marca }}</td>
+                    <td>{{ vehiculo.modelo }}</td>
+                    <td>{{ vehiculo.serial_carroceria }}</td>
+                    <td>{{ vehiculo.serial_motor }}</td>
+                    <td>{{ vehiculo.categoria }}</td>
+                    <td>{{ vehiculo.precio }}</td>
+                    <td>{{ vehiculo.rango_precio }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+
+</main>
+{% endblock %}
